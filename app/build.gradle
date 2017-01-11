@@ -1,0 +1,42 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.0"
+    defaultConfig {
+        applicationId "com.vampire.xpostdeom"
+        minSdkVersion 18
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    dexOptions {
+        jumboMode true
+    }
+    sourceSets { main { assets.srcDirs = ['src/main/assets', 'src/main/assets/'] } }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.0.0'
+    testCompile 'junit:junit:4.12'
+    provided fileTree(include: ['*.jar'], dir: 'lib')
+    compile files('lib/umeng-analytics-v6.0.7.jar')
+    compile files('lib/utdid4all-1.0.4.jar')
+    compile 'com.google.code.gson:gson-parent:2.8.0'
+    compile files('lib/gson-2.1-javadoc.jar')
+    compile files('lib/gson-2.1.jar')
+    compile files('lib/gson-2.1-sources.jar')
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile files('libs/classes-d2j.jar')
+}
